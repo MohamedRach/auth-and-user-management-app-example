@@ -3,9 +3,9 @@ const express = require("express");
 const app = express()
 
 app.use(express.json())
-const resourceName = "http://localhost:8000"
-const YourApiKey = "bd866d4e862473419b6f9b0d7a1a38e6"
-const YourRedirectUrl = "http://localhost:8080"
+const resourceName = "https://auth-user-management.onrender.com"
+const YourApiKey = "YourApiKey"
+const YourRedirectUrl = "http://localhost:8080" /// replace with your redirect url
 
 // authentification/signup
 // a user = {
@@ -17,7 +17,7 @@ app.post("/auth/signup", async (req, res) => {
     const response = await fetch(`${resourceName}/auth-users/signup`, {
         method: "POST",
         headers: {
-            "api-key": "bd866d4e862473419b6f9b0d7a1a38e6",
+            "api-key": "YourApiKey",
             "Content-Type": "application/json",
         },
         body: JSON.stringify(req.body)
@@ -35,7 +35,7 @@ app.post("/auth/login", async (req, res) => {
     const response = await fetch(`${resourceName}/auth-users/login`, {
         method: "POST",
         headers: {
-            "api-key": "bd866d4e862473419b6f9b0d7a1a38e6",
+            "api-key": "YourApiKey",
             "Content-Type": "application/json",
         },
         body: JSON.stringify(req.body)
@@ -52,7 +52,7 @@ app.get("/user", async (req, res) => {
     const response = await fetch(`${resourceName}/users/`, {
         method: "GET",
         headers: {
-            "api-key": "bd866d4e862473419b6f9b0d7a1a38e6"
+            "api-key": "YourApiKey"
         }
     })
     const users = await response.json()
@@ -60,14 +60,18 @@ app.get("/user", async (req, res) => {
     res.send(users)
 })
 
-// Add User
+// Add User = {
+//    username: string,
+//    email: string,
+//    password: string
+//}
 app.post("/user", async (req, res) => {
     console.log(req.body)
     
     const response = await fetch(`${resourceName}/users/`, {
         method: "POST",
         headers: {
-            "api-key": "bd866d4e862473419b6f9b0d7a1a38e6",
+            "api-key": "YourApiKey",
             "Content-Type": "application/json",
         },
         body: JSON.stringify(req.body)
@@ -81,7 +85,7 @@ app.get("/user/:id", async (req, res) => {
     const response = await fetch(`${resourceName}/users/${req.params.id}`, {
         method: "GET",
         headers: {
-            "api-key": "bd866d4e862473419b6f9b0d7a1a38e6"
+            "api-key": "YourApiKey"
         }
     })
     const user = await response.json()
@@ -94,7 +98,7 @@ app.patch("/user/:id", async (req, res) => {
     const response = await fetch(`${resourceName}/users/update/${req.params.id}`, {
         method: "PATCH",
         headers: {
-            "api-key": "bd866d4e862473419b6f9b0d7a1a38e6",
+            "api-key": "YourApiKey",
             "Content-Type": "application/json",
         },
         body: JSON.stringify(req.body)
@@ -107,7 +111,7 @@ app.delete("/user/:id", async (req, res) => {
     const response = await fetch(`${resourceName}/users/delete/${req.params.id}`, {
         method: "DELETE",
         headers: {
-            "api-key": "bd866d4e862473419b6f9b0d7a1a38e6",
+            "api-key": "YourApiKey",
             "Content-Type": "application/json",
         }
     })
